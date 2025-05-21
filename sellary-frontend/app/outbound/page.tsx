@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Search, X } from "lucide-react"
 import useSearch from "@/hooks/useSearch"
+import parseISOToString from "@/util/calc"
 // import { CreateProduct } from "@/components/outbound/CreateProduct"
 
 // 추후에 제거
@@ -260,11 +261,11 @@ export default function SearchPage() {
                         <div className="grid grid-cols-2 gap-2">
                           <div>
                             <p className="text-xs text-gray-500">유통기한</p>
-                            <p className="font-medium">{exp.expDate.toString()}</p>
+                            <p className="font-medium">{parseISOToString(exp.expDate)}</p>
                           </div>
                           <div>
                               <p className="text-xs text-gray-500">제조일자</p>
-                              <p className="font-medium">{exp.manufactureDate}</p>
+                              <p className="font-medium">{parseISOToString(exp.manufactureDate)}</p>
                             </div>
                             <div>
                               <p className="text-xs text-gray-500">재고 부족 기준일</p>
