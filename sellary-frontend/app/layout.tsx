@@ -38,8 +38,8 @@ export default function RootLayout({
                 style={{
                   "--sidebar-width": "8rem",
                 } as React.CSSProperties}>
+                <SidebarTrigger/>
                 <AppSidebar/>
-                  <SidebarTrigger/>
                   <Main>{children}</Main>
               </SidebarProvider>
             </div>
