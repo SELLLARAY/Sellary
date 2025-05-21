@@ -197,7 +197,7 @@ export default function SearchPage() {
               )}
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="col-span-2">
+              {/* <div className="col-span-2">
                 <h3 className="text-sm font-medium text-gray-500">기본 정보</h3>
                 <div className="mt-2 space-y-2 [&>..]: text-xs">
                   <div className="flex justify-between">
@@ -217,7 +217,7 @@ export default function SearchPage() {
                     <span>{selectedProduct.barcode || "-"}</span>
                   </div>
                 </div>
-              </div>
+              </div> */}
               
 
               {selectedProduct.shippedProductCost && (
