@@ -38,7 +38,7 @@ export default function RootLayout({
                 style={{
                   "--sidebar-width": "8rem",
                 } as React.CSSProperties}>
-                <SidebarTrigger/>
+                <SidebarTrigger className="fixed top-1 left-1"/>
                 <AppSidebar/>
                   <Main>{children}</Main>
               </SidebarProvider>
