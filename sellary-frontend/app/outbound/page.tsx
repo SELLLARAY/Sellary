@@ -262,40 +262,6 @@ export default function SearchPage() {
                   </div>
                 </div>
               )}
-              
-              {selectedProduct.shippedProductExp && selectedProduct.shippedProductExp.length > 0 && (
-                <div className="col-span-2 mt-1">
-                  <h3 className="text-sm font-medium text-gray-500">유통기한 정보</h3>
-                  <div className="mt-2 space-y-3 [&>div]:text-xs">
-                    {selectedProduct.shippedProductExp.map((exp) => (
-                      <div key={exp.id} className="bg-gray-50 p-3 rounded">
-                        <div className="grid grid-cols-2 gap-2">
-                          <div>
-                            <p className="text-xs text-gray-500">유통기한</p>
-                            <p className="font-medium">{parseISOToString(exp.expDate)}</p>
-                          </div>
-                          <div>
-                              <p className="text-xs text-gray-500">제조일자</p>
-                              <p className="font-medium">{parseISOToString(exp.manufactureDate)}</p>
-                            </div>
-                            <div>
-                              <p className="text-xs text-gray-500">재고 부족 기준일</p>
-                              <p className="font-medium">{exp.lowStockThresholdDay}일</p>
-                            </div>
-                            <div>
-                              <p className="text-xs text-gray-500">출고 불가 기준일</p>
-                              <p className="font-medium">{exp.noShippingThresholdDay}일</p>
-                            </div>
-                          <div>
-                            <p className="text-xs text-gray-500">수량</p>
-                            <p className="font-medium">{exp.quantity}</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           </div>
           </div>
