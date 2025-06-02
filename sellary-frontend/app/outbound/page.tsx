@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Search, X } from "lucide-react"
 import useSearch from "@/hooks/useSearch"
+// import parseISOToString from "@/util/calc"
 // import { CreateProduct } from "@/components/outbound/CreateProduct"
 
 // 추후에 제거
@@ -16,6 +17,7 @@ interface ShippedProductExp {
   noShippingThresholdDay: number | null;
 }
 interface ShippedProductCost {
+  
   id: number;
   unitPurchasePrice: number;
   boxPurchasePrice: number;
@@ -85,6 +87,10 @@ export default function SearchPage() {
   const handleProductSelect = (product: Product) => {
     setSelectedProduct(product)
     console.log("Selected : ", product)
+  }
+  
+  const handleProductSelectNull =()=> {
+    setSelectedProduct(null)
   }
 
   return (
@@ -180,23 +186,30 @@ export default function SearchPage() {
       )}
       </div>
     </div>
-      <div className="w-1/2 border rounded-lg p-4 min-h-96">
-        {selectedProduct ? (
+
+        {selectedProduct && (
+          <div className="w-1/2 border rounded-lg p-4 min-h-96">
           <div className="flex flex-col">
             <div className="flex">
-            <h2 className="text-xl font-bold mb-4">{selectedProduct.name}</h2>
-            {selectedProduct.tags && selectedProduct.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2 ml-auto">
-                    {selectedProduct.tags.map((tag: string, index: number) => (
-                      <span key={index} className="flex flex-col justify-center h-7 bg-gray-100 px-2 py-1 rounded-md text-xs">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+              <h2 className="text-xl font-bold mr-2">{selectedProduct.name}</h2>
+              <X
+              className="ml-auto cursor-pointer rounded-full hover:bg-gray-100"
+              onClick={handleProductSelectNull}
+              ></X>
+            </div>
+            <div className="my-2">
+              {selectedProduct.tags && selectedProduct.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 ">
+                      {selectedProduct.tags.map((tag: string, index: number) => (
+                        <span key={index} className="flex flex-col justify-center h-[1rem] bg-gray-100 px-[0.3rem] py-[0.2rem] rounded-xs text-[0.6rem]">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
               )}
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="col-span-2">
+              {/* <div className="col-span-2">
                 <h3 className="text-sm font-medium text-gray-500">기본 정보</h3>
                 <div className="mt-2 space-y-2 [&>..]: text-xs">
                   <div className="flex justify-between">
@@ -216,11 +229,11 @@ export default function SearchPage() {
                     <span>{selectedProduct.barcode || "-"}</span>
                   </div>
                 </div>
-              </div>
+              </div> */}
               
 
               {selectedProduct.shippedProductCost && (
-                <div className="col-span-2 mt-4">
+                <div className="col-span-2 mt-1">
                   <h3 className="text-sm font-medium text-gray-500">비용 정보</h3>
                   <div className="mt-2 grid grid-cols-2 gap-2 bg-gray-50 p-3 rounded [&>div]:text-xs">
                     <div>
@@ -250,48 +263,10 @@ export default function SearchPage() {
                   </div>
                 </div>
               )}
-              
-              {selectedProduct.shippedProductExp && selectedProduct.shippedProductExp.length > 0 && (
-                <div className="col-span-2 mt-2">
-                  <h3 className="text-sm font-medium text-gray-500">유통기한 정보</h3>
-                  <div className="mt-2 space-y-3 [&>div]:text-xs">
-                    {selectedProduct.shippedProductExp.map((exp) => (
-                      <div key={exp.id} className="bg-gray-50 p-3 rounded">
-                        <div className="grid grid-cols-2 gap-2">
-                          <div>
-                            <p className="text-xs text-gray-500">유통기한</p>
-                            <p className="font-medium">{exp.expDate.toString()}</p>
-                          </div>
-                          <div>
-                              <p className="text-xs text-gray-500">제조일자</p>
-                              <p className="font-medium">{exp.manufactureDate}</p>
-                            </div>
-                            <div>
-                              <p className="text-xs text-gray-500">재고 부족 기준일</p>
-                              <p className="font-medium">{exp.lowStockThresholdDay}일</p>
-                            </div>
-                            <div>
-                              <p className="text-xs text-gray-500">출고 불가 기준일</p>
-                              <p className="font-medium">{exp.noShippingThresholdDay}일</p>
-                            </div>
-                          <div>
-                            <p className="text-xs text-gray-500">수량</p>
-                            <p className="font-medium">{exp.quantity}</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           </div>
-        ) : (
-          <div className="flex items-center justify-center h-full text-gray-400">
-            검색 결과에서 상품을 선택하면 상세 정보가 표시됩니다.
           </div>
         )}
       </div>
-    </div>
   )
 }
