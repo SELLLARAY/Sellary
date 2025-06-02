@@ -17,6 +17,7 @@ interface ShippedProductExp {
   noShippingThresholdDay: number | null;
 }
 interface ShippedProductCost {
+  
   id: number;
   unitPurchasePrice: number;
   boxPurchasePrice: number;
